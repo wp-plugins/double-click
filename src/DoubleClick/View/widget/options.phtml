@@ -1,0 +1,28 @@
+<p>
+    <label for="<?php echo $this->fields['id'] ?>"><?php _e('Titulo:'); ?></label>
+    <input class="widefat" id="<?php echo $this->fields['id'] ?>" name="<?php echo $this->fields['title']; ?>" type="text" value="<?php echo esc_attr($this->title); ?>" />
+    <label for="<?php echo $this->fields['size'] ?>"><?php _e('Tamanho:'); ?></label>
+    <select onchange="changeDfpValue(this, '<?php echo $this->fields['min_width'] ?>', '<?php echo $this->fields['max_width'] ?>');" class="widefat" name="<?php echo $this->fields['size']; ?>">
+        <?php
+        if ($this->fields['sizes']) {
+            $first = $this->fields['sizes'][0];
+
+            foreach ($this->fields['sizes'] as $slot) {
+                if ($this->size == $slot->id) {
+                    $selected = 'selected';
+                    $min = $slot->width;
+                } else {
+                    $selected = '';
+                }
+                ?>
+                <option data-width="<?= $slot->width ?>" value="<?= $slot->id ?>"<?= $selected ?>><?= $slot->size ?></option>
+                <?php
+            }
+        }
+        ?>
+    </select>
+    <label for="<?php echo $this->fields['min_width'] ?>"><?php _e('Min Width:'); ?></label>
+    <input class="widefat" id="<?php echo $this->fields['min_width'] ?>" name="<?php echo $this->fields['min_width']; ?>" type="number" min="<?= $min? : $first->width ?>" step="1" value="<?php echo esc_attr($this->min_width); ?>" required/>
+    <label for="<?php echo $this->fields['max_width'] ?>"><?php _e('Max Width:'); ?></label>
+    <input class="widefat" id="<?php echo $this->fields['max_width'] ?>" name="<?php echo $this->fields['max_width']; ?>" type="number" min="<?= $min? : $first->width ?>" step="1" value="<?php echo esc_attr($this->max_width); ?>"/>
+</p>    

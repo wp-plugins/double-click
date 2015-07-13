@@ -1,0 +1,7 @@
+<div class="wraper-dfp wraper-<?= strtolower(str_replace(' ', '_', $this->size_details->size)) ?>">
+    <?php if ($this->id && $this->size && $this->slot) { ?>
+        <div id="<?= $this->id ?>" class="<?= strtolower(str_replace(' ', '_', $this->size_details->size)) ?> dfp" min-width="<?= $this->min_width? : '0' ?>" max-width="<?= $this->max_width? : '0' ?>" data-size="<?= $this->size ?>" data-slot="<?= $this->slot ?>"<?php if ($this->size_details->height != 1 && $this->size_details->width != 1) { ?> style="width:<?= $this->size_details->width ?>px;height:<?= $this->size_details->height ?>px;"<?php } ?>></div>
+    <?php } else { ?>
+    <!-- Nenhum banner encontrado para este espaço (<?= $this->size_details->size ?> <?= $this->size_details->width ?>x<?= $this->size_details->height ?>) -->
+    <?php } ?>
+</div>

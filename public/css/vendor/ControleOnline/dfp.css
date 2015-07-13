@@ -1,0 +1,10 @@
+.wraper-dfp{
+    text-align: center;
+    margin: 0 auto;
+}
+.wraper-dfp .dfp{
+    display: inline-table;
+    position: relative;
+    border: 0px;
+    vertical-align: middle;
+}

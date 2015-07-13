@@ -1,0 +1,26 @@
+{
+    "name": "controleonline/doubleclick",
+    "description": "Double Click Plugin for Wordpress",
+    "license": "BSD-3-Clause",
+    "homepage": "http://controleonline.com/",
+    "type": "library",
+    "keywords": [
+        "Double Click"
+    ],
+    "autoload": {
+        "psr-4": {
+            "DoubleClick\\": "src/DoubleClick"
+        },
+        "classmap": [
+            "Module.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "component-dir": "public/components"
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "~2.0"        
+    }
+}

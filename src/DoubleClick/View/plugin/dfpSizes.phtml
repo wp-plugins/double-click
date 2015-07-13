@@ -1,0 +1,78 @@
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?= admin_url('admin.php?page=DoubleClick'); ?>">Double Click</a>        
+        </li>
+        <li class="next"> 
+            <a href="<?= admin_url('admin.php?page=DoubleClick&action=dfpSizes'); ?>">Tamanhos</a>        
+        </li>
+    </ul>
+</nav>
+
+<div class="wrap">
+    <h2>Tamanhos</h2>    
+</div>
+<div class="wrap">    
+    <div>
+        <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">        
+            <table class="form-table">
+                <tr valign="top">
+                    <td>                    
+                        <label rel="size">Nome:</label>
+                        <input type="text" name="size" value="" required/>
+                    </td>
+                    <td>                    
+                        <label rel="width">Largura:</label>
+                        <input type="number" min="1" step="1" name="width" value="" required/>
+                    </td>
+                    <td>                    
+                        <label rel="height">Altura:</label>
+                        <input type="number" min="1" step="1" name="height" value="" required/>
+                    </td>
+                    <td>                                        
+                        <?php submit_button('Adicionar'); ?>
+                    </td>
+                </tr>
+            </table>  
+        </form>
+    </div>
+    <?php
+    if ($this->dfpSizes) {
+        foreach ($this->dfpSizes as $key => $size) {
+            ?>
+            <div>                
+                <table class="form-table">
+                    <tr valign="top">
+                    <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
+                        <input type="hidden" name="id" value="<?= $size->id ?>"/>
+                        <td>
+                            <label rel="name">Nome:</label>
+                            <input type="text" name="size" value="<?= $size->size ?>" required/>
+                        </td>
+                        <td>
+                            <label rel="width">Largura:</label>
+                            <input type="number" min="1" step="1" name="width" value="<?= $size->width ?>" required/>
+                        </td>
+                        <td>
+                            <label rel="height">Altura:</label>
+                            <input type="number" min="1" step="1" name="height" value="<?= $size->height ?>" required/>
+                        </td>
+                        <td>
+                            <?php submit_button('Salvar'); ?>                                                                
+                        </td>
+                    </form>
+                    <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">
+                        <td>
+                            <input type="hidden" name="id" value="<?= $size->id ?>"/>
+                            <input type="hidden" name="delete" value="true"/>
+                            <?php submit_button('Excluir'); ?>                                                                
+                        </td>
+                    </form>
+                    </tr>
+                </table>  
+
+            </div>
+            <?php
+        }
+    }
+    ?>    

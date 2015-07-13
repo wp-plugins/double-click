@@ -1,0 +1,58 @@
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?= admin_url('admin.php?page=DoubleClick'); ?>">Double Click</a>        
+        </li>        
+    </ul>
+</nav>
+
+<H2>
+    Você tem <?= $this->AdBlockCount ?> bloqueios pelo <a href="https://getadblock.com/">AdBlock</a>.    
+</H2>
+
+<div class="wrap">
+    <h2>Double Click</h2>    
+    <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>&action=dfpSizes">     
+        <?php submit_button('Tamanhos'); ?>
+    </form>
+    <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>&action=slot">
+        <?= submit_button('Adicionar Slots'); ?>
+    </form>
+</div>
+<div class="wrap">
+    <h2>Peças</h2>    
+    <table class="form-table">        
+        <?php
+        if ($this->slots) {
+            foreach ($this->slots as $slot) {
+                ?>
+                <tr valign="top">                    
+                    <td>
+                        <?= $slot->dfp_id ?>
+                    </td>
+                    <td>                    
+                        <?= $slot->slot ?>
+                    </td>
+                    <td>                    
+                        <?= $slot->size ?>
+                    </td>
+                    <td>
+                        <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>&action=slot&id=<?= $slot->id ?>">
+                            <?= submit_button('Editar'); ?>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>&action=slot">
+                            <input type="hidden" name="delete" value="true"/>
+                            <input type="hidden" name="slot_id" value="<?= $slot->id ?>"/>
+                            <?= submit_button('Excluir'); ?>
+                        </form>
+                    </td>
+
+                </tr>     
+                <?php
+            }
+        }
+        ?>
+    </table>  
+</div>

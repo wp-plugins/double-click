@@ -1,0 +1,127 @@
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="<?= admin_url('admin.php?page=DoubleClick'); ?>">Double Click</a>
+        </li>
+        <li class="next"> 
+            <a href="<?= admin_url('admin.php?page=DoubleClick&action=slot'); ?>">Slots</a>        
+        </li>
+    </ul>
+</nav>
+<div class="wraper-arranhaceu" style="width: 160px;height: 600px;  position: absolute;right: 20px;">
+
+</div>
+<div class="wrap">
+    <h2>Adicionar Peças na URL</h2>
+    <form method="post" action="<?= $_SERVER['REQUEST_URI'] ?>">        
+        <input value="<?= $this->slot->id ?>" type="hidden" name="id">
+        <table class="form-table">
+            <tr valign="top">
+                <th scope="row">ID</th>
+                <td>
+                    <input value="<?= $this->slot->dfp_id ?>" type="text" name="dfp_id" placeholder="div-gpt-ad-1433947640153-0" size="50" required>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Slot</th>
+                <td>
+                    <input value="<?= $this->slot->slot ?>" type="text" name="slot" placeholder="/18835487/ativo_beats_300x250_arrobabanner" size="50" required>
+                </td>
+            </tr>
+
+            <tr valign="top">
+                <th scope="row">Peça:</th>
+                <td>
+                    <select name="size_id">                    
+                        <?php
+                        if ($this->dfpSizes) {
+                            foreach ($this->dfpSizes as $size) {
+                                if ($this->slot->size_id == $size->id) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                                echo '<option value="' . $size->id . '" ' . $selected . '>' . $size->size . '</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+                </td>
+            </tr>
+            <tr valign="top">
+                <th scope="row">Categorias:</th>
+                <td>
+                    <ul>                                                
+                        <?php wp_category_checklist(null, null, $this->categories); ?>
+                    </ul>
+                </td>                                                
+            </tr>                        
+            <tr valign="top">
+                <th scope="row">Páginas:</th>
+                <td>
+                    <ul>      
+                        <?php
+                        $pages = get_pages();
+                        if ($pages) {
+                            echo '<ul>';
+                            foreach ($pages as $page) {
+                                if (is_array($this->pages) && in_array($page->ID, $this->pages)) {
+                                    $checked = 'checked';
+                                } else {
+                                    $checked = '';
+                                }
+                                ?>
+                                <li id="page-<?= $page->ID ?>">
+                                    <label class="selectit">
+                                        <input value="<?= $page->ID ?>" type="checkbox" name="post_page[]" id="in-page-<?= $page->ID ?>" <?= $checked ?>>
+                                        <?= $page->post_title ?>
+                                    </label>
+                                </li>
+                                <?php
+                            }
+                            echo '</ul>';
+                        }
+                        ?>
+                    </ul>
+                </td>                                                
+            </tr>     
+
+
+            <tr valign="top">
+                <th scope="row">Páginas Especiais:</th>
+                <td>
+                    <ul>      
+                        <?php
+                        $pages = array(
+                            1 => array('id' => 1, 'name' => 'Home'),
+                            2 => array('id' => 2, 'name' => 'Padrão'),
+                        );
+                        if ($pages) {
+                            echo '<ul>';
+                            foreach ($pages as $page) {
+                                if (is_array($this->special) && in_array($page['id'], $this->special)) {
+                                    $checked = 'checked';
+                                } else {
+                                    $checked = '';
+                                }
+                                ?>
+                                <li id="page-<?= $page['id'] ?>">
+                                    <label class="selectit">
+                                        <input value="<?= $page['id'] ?>" type="checkbox" name="post_special[]" id="in-special-<?= $page['id'] ?>" <?= $checked ?>>
+                                        <?= $page['name'] ?>
+                                    </label>
+                                </li>
+                                <?php
+                            }
+                            echo '</ul>';
+                        }
+                        ?>
+                    </ul>
+                </td>                                                
+            </tr>    
+
+
+        </table>  
+        <?php submit_button('Salvar'); ?>
+    </form>
+</div>
