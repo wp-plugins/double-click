@@ -7,7 +7,7 @@
 </nav>
 
 <h2>
-    Você tem <?= (int) $this->AdBlockCount->block_sum ?> propagandas bloqueadas pelo <a href="https://getadblock.com/" target="_blank">AdBlock</a> em <?= (int) $this->AdBlockCount->block_qtd ?> páginas no dia de hoje.
+    Você tem <?= number_format((int) $this->AdBlockCount->block_sum, 0, '', '.'); ?> propagandas bloqueadas pelo <a href="https://getadblock.com/" target="_blank">AdBlock</a> em <?= number_format((int) $this->AdBlockCount->block_qtd, 0, '', '.'); ?> páginas no dia de hoje.
 </h2>
 
 <div class="wrap">

@@ -45,19 +45,19 @@ var DFP = {
         if (container) {
             var style, o = container.getElementsByTagName('embed')[0];
             if (!o) {
-                style = 'z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
+                style = 'position:absolute;z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
                 clearInterval(DFP.interv);
             } else {
                 var w = o.offsetWidth, h = o.offsetHeight;
                 if (w == 0 && h == 0) {
-                    style = 'z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
+                    style = 'position:absolute;z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
                     clearInterval(DFP.interv);
                 } else {
                     iframe.contentWindow.scrollTo(o.offsetWidth + w, o.offsetHeight + h);
                     style = 'width: ' + w + 'px;' +
-                            'height: ' + h + 'px;' +
+                            'height: ' + h + 'px;' +                            
                             'z-index:999999999; ' +
-                            'position: absolute; ' +
+                            'position: fixed; ' +
                             'top: 50%;' +
                             'left: 50%;' +
                             'margin-left: -' + (w / 2) + 'px;' +
@@ -92,7 +92,7 @@ var DFP = {
                     });
                 } else {
                     var iframe = document.createElement('iframe');
-                    iframe.style.cssText = 'background-color:transparent!important;z-index:-999999999;height: 100%; position: absolute; top: 0; left: 0; width: 100%; border: 0px !important';
+                    iframe.style.cssText = 'background-color:transparent!important;z-index:-999999999;height: 100%; position: fixed; top: 0; left: 0; width: 100%; border: 0px !important';
                     iframe.setAttribute('id', 'iframe-' + dfp_id);
                     iframe.setAttribute('scrolling', 'no');
                     document.getElementById(dfp_id).appendChild(iframe);
