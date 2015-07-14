@@ -6,9 +6,9 @@
     </ul>
 </nav>
 
-<H2>
-    Você tem <?= $this->AdBlockCount ?> bloqueios pelo <a href="https://getadblock.com/">AdBlock</a>.    
-</H2>
+<h2>
+    Você tem <?= (int) $this->AdBlockCount->block_sum ?> propagandas bloqueadas pelo <a href="https://getadblock.com/" target="_blank">AdBlock</a> em <?= (int) $this->AdBlockCount->block_qtd ?> páginas no dia de hoje.
+</h2>
 
 <div class="wrap">
     <h2>Double Click</h2>    

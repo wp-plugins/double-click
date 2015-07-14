@@ -3,6 +3,7 @@ googletag.cmd = googletag.cmd || [];
 
 var DFP = {
     interv: null,
+    countAds: 0,
     __construct: (function () {
         document.addEventListener("DOMContentLoaded", function () {
             DFP.run();
@@ -74,13 +75,16 @@ var DFP = {
         innerDoc.addEventListener("DOMSubtreeModified", function () {
             DFP.checkSize(dfp_id, iframe, innerDoc);
         });
-        //this.interv = setInterval(function () {DFP.checkSize(dfp_id, iframe, innerDoc);}, 500);
+        this.interv = setInterval(function () {
+            DFP.checkSize(dfp_id, iframe, innerDoc);
+        }, 500);
     },
     show: function (slot, size, dfp_id, min_width, max_width) {
         var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
         var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
         if (w >= min_width && (max_width === '0' || w <= max_width)) {
             if (size[0] <= w && size[1] <= h) {
+                this.countAds++;
                 if (size[0] > 1 && size[1] > 1) {
                     googletag.cmd.push(function () {
                         googletag.defineSlot(slot, [size[0], size[1]], dfp_id).addService(googletag.pubads());
@@ -159,8 +163,11 @@ var DFP = {
                 'if (!googletag.impl) {' +
                 'var xmlhttp;' +
                 'xmlhttp = new XMLHttpRequest();' +
-                'xmlhttp.open("GET", "' + document.location.pathname + this.addUrlParam(document.location.search, 'adb', 'true') + '&_="' +
-                '+(new Date().getTime() / 1000), true);' +
+                'xmlhttp.open("GET", "' +
+                document.location.pathname +
+                this.addUrlParam(document.location.search, 'adb', this.countAds || '0') +
+                '&r="' + '+encodeURIComponent(document.location.pathname)+"' +
+                '&_="' + '+(new Date().getTime() / 1000), true);' +
                 'xmlhttp.send();' +
                 '}' +
                 '}, 2000);';
