@@ -45,17 +45,17 @@ var DFP = {
         if (container) {
             var style, o = container.getElementsByTagName('embed')[0];
             if (!o) {
-                style = 'position:absolute;z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
+                style = 'top:0;left:0;position:fixed;z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
                 clearInterval(DFP.interv);
             } else {
                 var w = o.offsetWidth, h = o.offsetHeight;
                 if (w == 0 && h == 0) {
-                    style = 'position:absolute;z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
+                    style = 'top:0;left:0;position:fixed;z-index:-999999999;width:0px;height:0px;background-color:transparent !important;';
                     clearInterval(DFP.interv);
                 } else {
                     iframe.contentWindow.scrollTo(o.offsetWidth + w, o.offsetHeight + h);
                     style = 'width: ' + w + 'px;' +
-                            'height: ' + h + 'px;' +                            
+                            'height: ' + h + 'px;' +
                             'z-index:999999999; ' +
                             'position: fixed; ' +
                             'top: 50%;' +
