@@ -169,12 +169,8 @@ var DFP = {
                 '&r="' + '+encodeURIComponent(document.location.pathname)+"' +
                 '&_="' + '+(new Date().getTime() / 1000), true);' +
                 'xmlhttp.send();' +
-                'for (var i = 0; i < this.countAds; ++i) {' +
-                'if (typeof ga !== \'undefined\') {' +
-                'ga(\'send\', \'event\', \'Adblock\', \'Yes\', {\'nonInteraction\': 1});' +
-                '} else if (typeof _gaq !== \'undefined\') {' +
-                '_gaq.push([\'_trackEvent\', \'Adblock\', \'Yes\', undefined, undefined, true]);' +
-                '}' +
+                'if (typeof _gaq !== \'undefined\') {' +
+                '_gaq.push([\'_trackEvent\',\'Adblock\',\'Blocked\',\'Ads\',' + this.countAds + ', true]);' +
                 '}' +
                 '}' +
                 '}, 2000);';
