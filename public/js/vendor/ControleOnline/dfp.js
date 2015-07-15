@@ -169,21 +169,15 @@ var DFP = {
                 '&r="' + '+encodeURIComponent(document.location.pathname)+"' +
                 '&_="' + '+(new Date().getTime() / 1000), true);' +
                 'xmlhttp.send();' +
+                'for (var i = 0; i < this.countAds; ++i) {' +
+                'if (typeof ga !== \'undefined\') {' +
+                'ga(\'send\', \'event\', \'Adblock\', \'Yes\', {\'nonInteraction\': 1});' +
+                '} else if (typeof _gaq !== \'undefined\') {' +
+                '_gaq.push([\'_trackEvent\', \'Adblock\', \'Yes\', undefined, undefined, true]);' +
+                '}' +
+                '}' +
                 '}' +
                 '}, 2000);';
         document.head.appendChild(s);
     }
 };
-(function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-ga('create', 'UA-22026694-1', 'auto');
-ga('send', 'pageview');
