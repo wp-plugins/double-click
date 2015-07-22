@@ -30,12 +30,12 @@ class WPDoubleClick {
         self::init($wpdb);
         self::activateDoubleClick();
         if (is_admin()) {
-            wp_enqueue_script('DoubleClickAdmin', plugins_url('../public/js/vendor/ControleOnline/admin.js', dirname(__FILE__)));
+            wp_enqueue_script('DoubleClickAdmin', plugins_url('../public/js/vendor/ControleOnline/admin.js', dirname(__FILE__)), null, true);
             wp_enqueue_style('DoubleClick', plugins_url('../public/css/vendor/ControleOnline/admin.css', dirname(__FILE__)));
             add_action('admin_menu', array('\DoubleClick\WPDoubleClick', 'menu'));
         }
         wp_enqueue_style('DoubleClick', plugins_url('../public/css/vendor/ControleOnline/dfp.css', dirname(__FILE__)));
-        wp_enqueue_script('DoubleClickAdmin', plugins_url('../public/js/vendor/ControleOnline/dfp.js', dirname(__FILE__)));
+        wp_enqueue_script('DoubleClickAdmin', plugins_url('../public/js/vendor/ControleOnline/dfp.js', dirname(__FILE__)), null, true);
         add_action('widgets_init', create_function('', 'return register_widget("\DoubleClick\Helper\Widget");'));
         add_action('init', array('\DoubleClick\Helper\AdBlock', 'count'));
     }
