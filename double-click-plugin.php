@@ -4,7 +4,7 @@
   Plugin Name: Double Click
   Plugin URI: https://github.com/ControleOnline/doubleclick
   Description: Double Click
-  Version: 1.1.0
+  Version: 1.1.1
   Author: Controle Online
   Author URI: http://www.controleonline.com
   License: GPL2
